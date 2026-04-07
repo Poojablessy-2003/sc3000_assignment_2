@@ -7,6 +7,7 @@ parent(queen_elizabeth, princess_ann).
 parent(queen_elizabeth, prince_andrew).
 parent(queen_elizabeth, prince_edward).
 
+female(queen_elizabeth).
 male(prince_charles).
 female(princess_ann).
 male(prince_andrew).
@@ -51,12 +52,6 @@ old_succession_rank(Person, Rank) :-
     length(L, N),
     Rank is N+1.
 
-
-
-
-
-
-
-
-
-
+show_old_succession :-
+    setof(R-P, old_succession_rank(P, R), L),
+    forall(member(R-P, L), format('Rank ~w: ~w~n', [R, P])).
